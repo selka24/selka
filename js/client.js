@@ -1,9 +1,0 @@
-const url = 'https://kaerwjecfhifvxhlektc.supabase.co';
-
-const secretKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjM2NDU2OTY1LCJleHAiOjE5NTIwMzI5NjV9.JUwCi-Vi3eLTmlw81qsmAqIwG6CEvZFhh_YFDMxFv7E';
-const publicKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQ1Njk2NSwiZXhwIjoxOTUyMDMyOTY1fQ.gr2JopxZU-HGVDCnWXV7GiB_osMjpYzwgnS6ql6wb_U'
-const logKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjQyMzYwNDkxLCJzdWIiOiI3ZTEwZTRmNC04YzAxLTQ2MzQtOTFmNi01Yjk3OGExNzFhMTYiLCJlbWFpbCI6ImtyaXNlbF9oeXNlbmFqQGhvdG1haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6e30sInJvbGUiOiJhdXRoZW50aWNhdGVkIn0.YS99E3u-hbsVAl_EdroZ29oFIpoI8oejoPGwqE4eJd0'
-const { createClient } = require('@supabase/supabase-js');
-
-// Create a single supabase client for interacting with your database
-export const supabase = createClient(url, logKey);

@@ -24,7 +24,10 @@ export default {
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
-    css: [],
+    css: [
+        "@/assets/css/formulate.css",
+        "@/assets/css/main.css",
+    ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [],
@@ -33,7 +36,17 @@ export default {
     components: true,
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-    buildModules: [],
+    buildModules: [
+        [
+            "@nuxtclub/supabase",
+            {
+                /* module options */
+                url: "https://kaerwjecfhifvxhlektc.supabase.co",
+                key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjM2NDU2OTY1LCJleHAiOjE5NTIwMzI5NjV9.JUwCi-Vi3eLTmlw81qsmAqIwG6CEvZFhh_YFDMxFv7E",
+            },
+        ],
+        '@braid/vue-formulate/nuxt'
+    ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [

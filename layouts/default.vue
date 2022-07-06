@@ -1,10 +1,11 @@
 ﻿<template>
-    <Nuxt />
+    <div class="page-content mt-5 pb-2 mb-10">
+        <Nuxt />
+    </div>
 </template>
 
 <script>
 export default {
-    middleware: ['isAuthenticated'],
     name: "default"
 }
 </script>

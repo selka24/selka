@@ -1,0 +1,98 @@
+h5 {
+    font-weight: 500;
+}
+h2 {
+    font-size: 22px;
+}
+.register-header {
+    font-weight: 400;
+    margin-bottom: 1rem!important;
+    color: #000;
+}
+.login-cards {
+    border: 1px solid #e1dfdf;
+    border-radius: 10px;
+    padding: 15px 10px;
+    margin-right: 1rem;
+    height: 310px;
+    max-width: 345px;
+}
+.formulate-input{
+    max-width: 365px !important;
+}
+.formulate-input-element formulate-input-element{
+    max-width: 365px !important;
+}
+p {
+    line-height: 1.86;
+}
+
+input:focus {
+    box-shadow: none !important;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.custom-login-button {
+    width: 100%;
+    text-transform: uppercase;
+    margin-top: 6px;
+    border: 2px solid #ee5d2f;
+    background: none !important;
+    color: #ee5d2f;
+    border-radius: 36px;
+    font-weight: 500;
+    padding: 1.22em 2.78em;
+    line-height: 1.2;
+}
+.forgot-password {
+    text-align: center;
+    margin-top: 1rem;
+    color: #f65724;
+}
+.__selected-button, .custom-login-button:hover {
+    color: #fff !important;
+    background: #ee5d2f !important;
+}
+
+.custom-login-input {
+    background-color: hsla(0, 0%, 95.7%, .52941);
+    border-radius: 6px;
+    color: #000;
+}
+@font-face {
+    font-family: "Gilroy";
+    src: local("Gilroy"),
+    url(~assets/Gilroy-Regular.ttf) format("truetype");
+}
+
+html {
+    font-family: "Gilroy";
+}
+/*.btn {*/
+/*    display: inline-block;*/
+/*    !*border: 2px solid #e4eaec;*!*/
+/*    !*background-color: #e4eaec;*!*/
+/*    !*color: #222;*!*/
+/*    outline: 0;*/
+/*    padding: 1.22em 2.78em;*/
+/*    font-weight: 700;*/
+/*    font-family: Gilroy-Regular;*/
+/*    letter-spacing: 0;*/
+/*    line-height: 1.2;*/
+/*    text-transform: uppercase;*/
+/*    text-align: center;*/
+/*    transition: color .3s,border-color .3s,background-color .3s,box-shadow .3s;*/
+/*    white-space: nowrap;*/
+/*    cursor: pointer;*/
+/*}*/
