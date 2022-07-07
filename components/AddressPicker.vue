@@ -23,6 +23,11 @@ export default {
     components:{
         VSelect
     },
+    props:{
+        countryInfo: {
+            type: Object
+        }
+    },
     data(){
         return {
             countries: ['Italy'],
@@ -37,11 +42,11 @@ export default {
             selectedCity: '',
         }
     },
-    watch:{
-        selectedProvince(){
-            this.selectedCity = '';
-        }
-    },
+    // watch:{
+    //     selectedProvince(){
+    //         this.selectedCity = '';
+    //     }
+    // },
     computed:{
         currentCities(){
             if(this.selectedProvince){
@@ -56,6 +61,14 @@ export default {
             province: this.selectedProvince,
             city: this.selectedCity
         })
+    },
+    mounted() {
+        console.log(this.countryInfo, 'countryyyy')
+        if(this.countryInfo){
+            this.selectedCountry = this.countryInfo.country
+            this.selectedProvince = this.countryInfo.province
+            this.selectedCity = this.countryInfo.city
+        }
     }
 }
 </script>

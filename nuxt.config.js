@@ -41,8 +41,8 @@ export default {
             "@nuxtclub/supabase",
             {
                 /* module options */
-                url: "https://kaerwjecfhifvxhlektc.supabase.co",
-                key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjM2NDU2OTY1LCJleHAiOjE5NTIwMzI5NjV9.JUwCi-Vi3eLTmlw81qsmAqIwG6CEvZFhh_YFDMxFv7E",
+                url: "https://elgnbuqtuzilfphmysru.supabase.co",
+                key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVsZ25idXF0dXppbGZwaG15c3J1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY0NTI3ODcwNywiZXhwIjoxOTYwODU0NzA3fQ.HaRjrHMewJqi54DfjFY6CfqR_tqSR3vgWVzOBmrM8rE",
             },
         ],
         '@braid/vue-formulate/nuxt'

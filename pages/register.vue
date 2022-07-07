@@ -34,12 +34,14 @@
                                  v-model="phone"/>
                 <formulate-input
                     class="col-md-6"
+                    v-model="password"
                     label="New password"
                     type="password"
                     name="password"
                     validation="^required|min:8,length"/>
                 <formulate-input
                     class="col-md-6"
+                    v-model="confirmPassword"
                     label="Confirm password"
                     type="password"
                     name="password_confirm"
@@ -62,6 +64,7 @@
                 @click="submit">
             Register
         </button>
+        <spin-loader v-if="registeringUser"/>
     </div>
 </template>
 
@@ -81,12 +84,15 @@ export default {
             postCode: '',
             countryInfo: null,
             gender: '',
-            fiscalCode: '',  email: '',
+            fiscalCode: '',
+            email: '',
             phone: '',
             password: '',
+            confirmPassword: '',
             genderOptions: ['F.', 'M.'],
             accepted: false,
             birthday: null,
+            registeringUser: false
         }
     },
     methods:{
@@ -96,8 +102,33 @@ export default {
         setCountry(countryInfo){
             this.countryInfo = countryInfo;
         },
-        submit(){
+        async submit(){
             console.log('submit registered')
+            this.registeringUser = true;
+            const { user, session, error } = await this.$supabase.auth.signUp(
+                {
+                    email: this.email,
+                    password: this.password,
+                },
+                {
+                    data: {
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                        birthday: this.birthday,
+                        address: this.address,
+                        streetNumber: this.streetNumber,
+                        postCode: this.postCode,
+                        countryInfo: this.countryInfo,
+                        gender: this.gender,
+                        fiscalCode: this.fiscalCode,
+                        phone: this.phone,
+                    }
+                }
+            )
+            if(error){
+                alert(`Oops something went wrong! Please try again!${error}`)
+            }
+            this.registeringUser = false;
         }
     }
 }

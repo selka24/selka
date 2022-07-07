@@ -46,8 +46,10 @@ export default {
             ]
         }
     },
-    watch:{
-
+    props:{
+        birthday: {
+            type:Object
+        }
     },
     computed:{
         currentYear(){
@@ -75,6 +77,14 @@ export default {
     },
     updated() {
         this.handleChanges();
+    },
+    mounted() {
+        if(this.birthday){
+            const {year, month, day} = this.birthday;
+            this.selectedYear = year;
+            this.selectedMonth = month;
+            this.selectedDay = day;
+        }
     }
 }
 </script>
