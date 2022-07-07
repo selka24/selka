@@ -10,28 +10,32 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-7 border-right">
-                {{userInfo}}
+            <div class="col-md-8 border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
                     <div class="row mt-2">
                         <div class="col-md-6">
-                            <label>Name</label>
+                            <label style="font-weight: 600;">Name *</label>
                             <input type="text" class="form-control" placeholder="First name" v-model="userInfo.firstName"></div>
-                        <div class="col-md-6"><label>Surname</label><input type="text" class="form-control" v-model="userInfo.lastName" placeholder="Last name"></div>
+                        <div class="col-md-6"><label style="font-weight: 600;">Surname</label><input type="text" class="form-control" v-model="userInfo.lastName" placeholder="Last name"></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label>Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" v-model="userInfo.phone"></div>
-                        <div class="col-md-7 mt-3"><label>Address</label><input type="text" class="form-control" placeholder="enter address line 1" v-model="userInfo.address"></div>
-                        <div class="col-md-2 mt-3"><label>Street number</label><input type="text" class="form-control" placeholder="enter address line 1" v-model="userInfo.streetNumber"></div>
-                        <div class="col-md-3 mt-3"><label>POSTAL CODE</label><input type="text" class="form-control" placeholder="enter address line 1" v-model="userInfo.postCode"></div>
+                        <div class="col-md-12"><label style="font-weight: 600;">Phone *</label><input type="text" class="form-control" placeholder="enter phone number" v-model="userInfo.phone"></div>
+                        <div class="col-md-7 mt-3"><label style="font-weight: 600;">Address *</label><input type="text" class="form-control" placeholder="enter address line 1" v-model="userInfo.address"></div>
+                        <div class="col-md-2 mt-3"><label style="font-weight: 600;">Street number *</label><input type="text" class="form-control" placeholder="enter address line 1" v-model="userInfo.streetNumber"></div>
+                        <div class="col-md-3 mt-3"><label style="font-weight: 600;">POSTAL CODE *</label><input type="text" class="form-control" placeholder="enter address line 1" v-model="userInfo.postCode"></div>
                         <address-picker class="mt-3" v-if="userInfo.countryInfo" :country-info="userInfo.countryInfo"/>
                         <birthday-picker v-if="userInfo.birthday" :birthday="userInfo.birthday"/>
                     </div>
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                    <div class="row mt-3">
+                        <gender-picker v-model="userInfo.gender"/>
+                        <div class="col-md-8"><label style="font-weight: 600;">Fiscal code *</label><input type="text" class="form-control" placeholder="Fiscal code" v-model="userInfo.fiscalCode"></div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn custom-login-button" type="button" @click="saveProfile">Save Profile</button></div>
                 </div>
+                {{disableSave}}
             </div>
         </div>
     </div>
@@ -55,8 +59,29 @@ export default {
                 }
             })
         },
+        saveProfile(){
+
+        }
     },
     computed:{
+        disableSave(){
+            for(let key in this.userInfo){
+                if(typeof this.userInfo[key] === 'object'){
+                    for(let subKey in this.userInfo[key]){
+                        if(!this.userInfo[key][subKey]){
+                            console.log(this.userInfo[key][subKey], 'if disable')
+                            return true;
+                        }
+                    }
+                } else {
+                    if(!this.userInfo[key]) {
+                        console.log(this.userInfo[key], 'else disable')
+                        return true;
+                    }
+                }
+            }
+            return false;
+        },
         flatUserInfo(){
             const loggedUser = this.$supabase.auth.user();
             return {
