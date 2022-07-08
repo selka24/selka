@@ -65,7 +65,6 @@
             Register
         </button>
         <spin-loader v-if="registeringUser"/>
-        {{passwordNotValid}}
     </div>
 </template>
 
