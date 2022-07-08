@@ -1,6 +1,5 @@
 <template>
     <div class="col-md-6 col-sm-12" style="margin-right: auto;padding: 40px;">
-
         <h1 class="mb-4 colorBlack">Registration</h1>
         <h2 class="register-header">Billing information</h2>
         <div class="row">
@@ -129,6 +128,7 @@ export default {
                 alert(`Oops something went wrong! Please try again!${error}`)
             }
             this.registeringUser = false;
+            alert('We have sent an email confirmation to the address provided! Please follow the email instructions to complete the registration. You can close this window.')
         }
     }
 }

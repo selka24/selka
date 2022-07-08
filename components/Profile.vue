@@ -3,12 +3,12 @@
         <div v-if="flatUserInfo" class="row">
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                    <span class="font-weight-bold">{{flatUserInfo.firstName}}</span>
-                    <span class="text-black-50">{{ flatUserInfo.email }}</span>
+                    <img class="rounded-circle mt-5" width="150px" src="https://thumbs.dreamstime.com/b/avatar-icon-avatar-flat-symbol-isolated-white-avatar-icon-avatar-flat-symbol-isolated-white-background-avatar-simple-icon-124920496.jpg">
+                    <span class="font-weight-bold" style="color: #ff5722">{{flatUserInfo.firstName}}</span>
+                    <span style="color: #ff5722">{{ flatUserInfo.email }}</span>
                 </div>
             </div>
-            <div class="col-md-8 border-right">
+            <div class="col-md-8">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">{{ editUser ? `You are editing user "${editUser.firstName} ${editUser.lastName}"` : 'Profile Settings' }}</h4>

@@ -79,7 +79,9 @@ body {
     src: local("Gilroy"),
     url(~assets/Gilroy-Regular.ttf) format("truetype");
 }
-
+.border-right{
+    border-right: 1px solid #ff5722;
+}
 html {
     font-family: "Gilroy";
 }
@@ -238,7 +240,6 @@ body.fixed .header-fixed .header-limiter nav {
 body {
     margin: 0;
     padding: 0;
-    height: 1500px;
 }
 .spinner {
     height: 100% !important;

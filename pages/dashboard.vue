@@ -9,7 +9,7 @@
             </template>
             <template #cell(actions)="data">
                 <button @click="editUser(data.item)" class="btn custom-login-button compactBtn">Edit</button>
-                <button class="btn custom-login-button compactBtn" @click="deleteUser(data.item.id)">Delete</button>
+                <button v-if="userInfo.id !== data.item.id" class="btn custom-login-button compactBtn" @click="deleteUser(data.item.id, data.index)">Delete</button>
             </template>
         </b-table>
         <div v-if="editingUser">
@@ -21,7 +21,7 @@
 <script>
 
 import {calculateAge} from "@/js/helpers";
-import { createClient } from '@supabase/supabase-js'
+import {mapState} from "vuex";
 
 export default {
     middleware: ['authenticated', 'admin'],
@@ -45,10 +45,13 @@ export default {
         }
     },
     computed:{
+        ...mapState({
+            userInfo: state => state.store.userInfo
+        }),
         flatUsers(){
             if(this.users.length){
                 return this.users.map(x => {
-                    return {...x.user_data, id: x.id}
+                    return {...x.user_data, id: x.id, email: x.email}
                 });
             }
             return [];
@@ -58,18 +61,20 @@ export default {
         editUser(user){
             this.editingUser = user;
         },
-        async deleteUser(id){
-            const response = await this.$supabase
-                .from('profiles')
-                .delete()
-                .match({id})
+        async deleteUser(id, idx){
+            if(confirm('Are you sure you want to delete this user?')){
+                const response = await this.$supabase
+                    .from('profiles')
+                    .delete()
+                    .match({id})
 
-            if(response.data){
-                const { data: user, error } = await this.$supabase.auth.api.deleteUser(
-                    id
-                );
+                if(response.data){
+                    const { data: user, error } = await this.$supabase.auth.api.deleteUser(
+                        id
+                    );
+                }
+                this.users.splice(idx, 1);
             }
-
         },
         getAddress({item}){
             const {city, province, country} = item.countryInfo;
