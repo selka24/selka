@@ -60,10 +60,12 @@
         </p>
         <button type="button"
                 class="btn custom-login-button"
+                :disabled="disableRegister"
                 @click="submit">
             Register
         </button>
         <spin-loader v-if="registeringUser"/>
+        {{passwordNotValid}}
     </div>
 </template>
 
@@ -92,6 +94,33 @@ export default {
             accepted: false,
             birthday: null,
             registeringUser: false
+        }
+    },
+    computed:{
+        disableRegister(){
+            if(this.passwordNotValid) return true;
+            let checks = ['firstName', 'lastName', 'address', 'streetNumber', 'postCode', 'gender', 'fiscalCode', 'email', 'phone', 'password', 'confirmPassword', 'accepted', 'birthday', 'countryInfo']
+            for(let info of checks){
+                if(info === 'countryInfo' || info === 'birthday'){
+                    for(let key in this[info]){
+                        if(!key) return true
+                        if(!this[info][key]){
+                            return true;
+                        }
+                    }
+                } else {
+                    if(!this[info]){
+                        return true
+                    }
+                }
+            }
+            return false;
+        },
+        passwordNotValid(){
+            if(!this.password || !this.confirmPassword){
+                return true;
+            }
+            return this.password !== this.confirmPassword;
         }
     },
     methods:{
