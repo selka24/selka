@@ -87,11 +87,11 @@ html {
     background-color: white;
     box-shadow:0 1px 1px #ccc;
     padding: 20px 40px;
-    height: 80px;
+    align-items: center;
+    justify-content: space-between;
     color: #ffffff;
     box-sizing: border-box;
     top:-100px;
-
     -webkit-transition:top 0.3s;
     transition:top 0.3s;
 }
@@ -99,16 +99,37 @@ html {
 .header-fixed .header-limiter {
     max-width: 1200px;
     text-align: center;
-    margin: 0 auto;
+}
+
+.m-l-auto{
+    margin-left: auto;
+}
+
+.btn-secondary{
+    color: black;
+    background-color: white !important;
+    border-color: #6c757d;
+    font-weight: 500;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .show > .btn-secondary.dropdown-toggle {
+    color: black !important;
+}
+
+.compactBtn{
+    max-width: max-content;
+    padding: 5px 20px;
+    margin: 0 !important;
+}
+
+td{
+    line-height: 30px;
 }
 
 .header-fixed-placeholder{
-    height: 80px;
     display: none;
 }
-
 /* Logo */
-
 .header-fixed .header-limiter h1 {
     float: left;
     font: normal 28px Cookie, Arial, Helvetica, sans-serif;
@@ -155,7 +176,6 @@ html {
 
 body.fixed .header-fixed {
     padding: 10px 40px;
-    height: 80px;
     position: fixed;
     width: 100%;
     top: 0;

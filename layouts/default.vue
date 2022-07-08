@@ -1,12 +1,19 @@
 ﻿<template>
     <div>
-        <header class="header-fixed d-flex">
+        <header class="header-fixed d-flex gap-3">
             <div class="header-limiter">
-                <nuxt-link v-if="loggedUser" to="/">
-                    <img src="https://www.deghi.it/_nuxt/img/deghi_logo.2deb641.svg" style="width: 150px">
-                </nuxt-link>
+<!--                <nuxt-link to="/">-->
+<!--                    <img src="https://www.deghi.it/_nuxt/img/deghi_logo.2deb641.svg" style="width: 150px">-->
+<!--                </nuxt-link>-->
             </div>
-            <h5 style="color: black; margin-right: 10px">{{loggedUser.user_metadata.firstName}}</h5>
+            <div class="m-l-auto">
+                <nuxt-link to="/dashboard">
+                    <i class="fa-solid fa-table-columns" style="cursor: pointer; color: black; font-size: 21px;"></i>
+                </nuxt-link>
+                <b-dropdown v-if="userInfo" right :text="userInfo.user_data.firstName">
+                    <b-dropdown-item @click="signOut">Sign Out</b-dropdown-item>
+                </b-dropdown>
+            </div>
             <nuxt-link to="/">
                 <i class="fa-regular fa-user" style="cursor: pointer; color: black; font-size: 21px;"></i>
             </nuxt-link>
@@ -18,15 +25,29 @@
 </template>
 
 <script>
+import {mapMutations, mapState} from "vuex";
+
 export default {
     name: "default",
     computed:{
-        loggedUser(){
-            if(this.$supabase.auth.user()){
-                return this.$supabase.auth.user()
-            }
-            return null;
-        }
+        ...mapState({
+            userInfo: state => state.store.userInfo
+        })
+    },
+    methods:{
+        ...mapMutations({
+            mutState: 'store/mutState'
+        }),
+        signOut() {
+            this.$supabase.auth.signOut().then(({ error }) => {
+                if (error) {
+                    console.error(error)
+                } else {
+                    this.mutState({key: 'userInfo', value: null})
+                    this.$router.push('/login')
+                }
+            })
+        },
     },
     mounted() {
         let showHeaderAt = 80;
