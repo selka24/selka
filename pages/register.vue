@@ -1,6 +1,5 @@
 <template>
     <div class="col-md-6 col-sm-12" style="margin-right: auto;padding: 40px;">
-
         <h1 class="mb-4 colorBlack">Registration</h1>
         <h2 class="register-header">Billing information</h2>
         <div class="row">
@@ -61,6 +60,7 @@
         </p>
         <button type="button"
                 class="btn custom-login-button"
+                :disabled="disableRegister"
                 @click="submit">
             Register
         </button>
@@ -93,6 +93,33 @@ export default {
             accepted: false,
             birthday: null,
             registeringUser: false
+        }
+    },
+    computed:{
+        disableRegister(){
+            if(this.passwordNotValid) return true;
+            let checks = ['firstName', 'lastName', 'address', 'streetNumber', 'postCode', 'gender', 'fiscalCode', 'email', 'phone', 'password', 'confirmPassword', 'accepted', 'birthday', 'countryInfo']
+            for(let info of checks){
+                if(info === 'countryInfo' || info === 'birthday'){
+                    for(let key in this[info]){
+                        if(!key) return true
+                        if(!this[info][key]){
+                            return true;
+                        }
+                    }
+                } else {
+                    if(!this[info]){
+                        return true
+                    }
+                }
+            }
+            return false;
+        },
+        passwordNotValid(){
+            if(!this.password || !this.confirmPassword){
+                return true;
+            }
+            return this.password !== this.confirmPassword;
         }
     },
     methods:{
@@ -129,6 +156,7 @@ export default {
                 alert(`Oops something went wrong! Please try again!${error}`)
             }
             this.registeringUser = false;
+            alert('We have sent an email confirmation to the address provided! Please follow the email instructions to complete the registration. You can close this window.')
         }
     }
 }

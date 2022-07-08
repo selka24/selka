@@ -18,6 +18,8 @@
 <script>
 import VSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
+import {months} from "@/js/constants";
+import {getMonthNumber} from "@/js/helpers";
 export default {
     name: "BirthdayPicker",
     components:{
@@ -30,20 +32,7 @@ export default {
             selectedMonth: '',
             selectedDay: '',
             minAge: 18,
-            months: [
-                'January',
-                'February',
-                'March',
-                'April',
-                'May',
-                'June',
-                'July',
-                'August',
-                'September',
-                'October',
-                'November',
-                'December'
-            ]
+            months: months
         }
     },
     props:{
@@ -56,7 +45,7 @@ export default {
             return new Date().getFullYear();
         },
         currMonthIdx(){
-            return this.months.findIndex(m => m === this.selectedMonth)
+            return getMonthNumber(this.selectedMonth);
         },
         yearOptions(){
             const length = (this.currentYear - (this.minAge - 1)) - 1920;
